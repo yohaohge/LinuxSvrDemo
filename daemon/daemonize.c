@@ -47,7 +47,7 @@ int main() {
 		return 0;
 	while(1)
 	{
-		cout << "can" << endl;
+		//处理业务逻辑
 	}
 	return 0;
 }
