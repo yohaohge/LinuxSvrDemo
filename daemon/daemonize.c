@@ -8,7 +8,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
-
+#include <fcntl.h>
 
 using namespace std;
 
@@ -22,15 +22,21 @@ int daemonize()
 		exit(0);
 
 	// 创建新session，成为session leader
-	setsid();
+	if(setsid() < 0) 
+		return -1;
 	// 改变当前工作目录到根目录
-	chdir("/");
+	if(chdir("/") < 0) 
 	// 设置文件创建mask为0
-	umask(0);
+	if(umask(0) < 0)
+		return -1;
 	// 关闭不需要的打开的文件描述符（STDIN STDOUT STDERR)
-	close(0);
-	close(1);
-	close(2);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
+	
+	open("dev/null", O_RDONLY);
+	open("dev/null", O_RDWR);
+	open("dev/null", O_RDWR);
 
 	return 0;
 }
