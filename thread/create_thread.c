@@ -19,6 +19,7 @@ int main()
 	{
 		printf("create thread fail\n");
 	}
+	//直接return的情况下，子线程无法执行
 	sleep(1);
 
 	return 0;
