@@ -16,7 +16,7 @@ int main(int argc, const char** argv)
 			case 'b':
 				printf("option b = %s\n", optarg);
 			case 'c':
-				printf("optiob c = %s\n", optarg);
+				printf("option c = %s\n", optarg);
 			default:
 				printf("other option %s\n", optarg);
 		}
