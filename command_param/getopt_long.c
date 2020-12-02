@@ -24,7 +24,7 @@ int main(int argc, const char** argv)
 {
 	int c = 0;
 	int index = 0;
-	while( (c = getopt_long(argc, argv, "abc:d:f:", &long_options, &index)) != -1 )
+	while( (c = getopt_long(argc, argv, "abc:d:f:", &long_options, &index)) != EOF )
 	{
 		switch(c)
 		{
@@ -50,6 +50,16 @@ int main(int argc, const char** argv)
 				printf("wrong param\n");
 		}
 	}
+
+	if(optind == argc)
+	{
+		printf("has no extra param\n");
+	}
+	else
+	{
+		printf("extra param: %s\n", argv[optind]);
+	}
 	return 0;
+
 
 }
